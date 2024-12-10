@@ -1,6 +1,11 @@
 import json
 
+from json_initializer import initialize_json_if_needed
+
 def main():
+
+      # Inicializa el archivo JSON si no existe
+    initialize_json_if_needed()
     
     # Main program loop
     while True:
