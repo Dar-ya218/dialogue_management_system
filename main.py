@@ -21,3 +21,6 @@ def main():
             person2_text = input("Enter Person 2's message: ")
            # add_dialogue(person1_text, person2_text)
             print("Dialogue saved successfully!")
+
+if __name__ == "__main__":
+    main()
