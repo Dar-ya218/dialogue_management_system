@@ -14,5 +14,5 @@ def main():
         if choice == "1":
             person1_text = input("Enter Person 1's message: ")
             person2_text = input("Enter Person 2's message: ")
-            add_dialogue(person1_text, person2_text)
+           # add_dialogue(person1_text, person2_text)
             print("Dialogue saved successfully!")
