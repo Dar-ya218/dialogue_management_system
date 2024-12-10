@@ -1,5 +1,7 @@
 import os
 
+from constants import JSON_FILE
+
 
 def initialize_json_if_needed():
     # Comprueba si el archivo existe
