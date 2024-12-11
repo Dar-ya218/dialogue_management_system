@@ -1,6 +1,7 @@
 import json
 
 from json_initializer import initialize_json_if_needed
+import read_json_file
 
 def main():
 
@@ -32,6 +33,12 @@ def main():
                     print(f"Persona 2: {dialogue['person2']}")
             else:
                 print("\nNo se encontraron diálogos.")
+
+        elif choice == "3":
+            print("\n¡Hasta luego!")
+            break
+        else:
+            print("\nOpción no válida. Por favor, inténtelo de nuevo.")
 
 if __name__ == "__main__":
     main()
