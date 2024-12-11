@@ -22,5 +22,16 @@ def main():
            # add_dialogue(person1_text, person2_text)
             print("Dialogue saved successfully!")
 
+        elif choice == "2":
+            dialogues = read_json_file()
+            if dialogues["dialogues"]:
+                print("\n=== Diálogos Guardados ===")
+                for i, dialogue in enumerate(dialogues["dialogues"], 1):
+                    print(f"\nDiálogo {i}:")
+                    print(f"Persona 1: {dialogue['person1']}")
+                    print(f"Persona 2: {dialogue['person2']}")
+            else:
+                print("\nNo se encontraron diálogos.")
+
 if __name__ == "__main__":
     main()
