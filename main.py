@@ -1,7 +1,7 @@
 import json
 
 from json_initializer import initialize_json_if_needed
-import read_json_file
+import json_reader
 
 def main():
 
@@ -24,7 +24,7 @@ def main():
             print("Dialogue saved successfully!")
 
         elif choice == "2":
-            dialogues = read_json_file()
+            dialogues = json_reader()
             if dialogues["dialogues"]:
                 print("\n=== Diálogos Guardados ===")
                 for i, dialogue in enumerate(dialogues["dialogues"], 1):
