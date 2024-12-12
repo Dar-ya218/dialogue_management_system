@@ -25,7 +25,7 @@ def main():
             print("Dialogue saved successfully!")
 
         elif choice == "2":
-            dialogues = json_reader()
+            dialogues = json_reader.read_json_file()
             if dialogues["dialogues"]:
                 print("\n=== Diálogos Guardados ===")
                 for i, dialogue in enumerate(dialogues["dialogues"], 1):
