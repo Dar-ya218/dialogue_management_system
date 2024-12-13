@@ -1,0 +1,16 @@
+{
+    "dialogues": [
+        {
+            "person1": "Hola! Que tal?",
+            "person2": "hola! Todo bien y tu?"
+        },
+        {
+            "person1": "holaaaa",
+            "person2": "como te va?"
+        },
+        {
+            "person1": "Hace frio por alli?",
+            "person2": "no, que va..."
+        }
+    ]
+}
