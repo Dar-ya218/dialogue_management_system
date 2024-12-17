@@ -1,6 +1,6 @@
 """Módulo para actualizar archivos JSON"""
-from json_reader import read_json_file
-from json_writer import write_json_file
+from test.json_reader import read_json_file
+from test.json_writer import write_json_file
 
 def update_json_file(dialogue_id, updated_data):
     """Actualiza un diálogo específico en el archivo JSON."""

@@ -1,8 +1,8 @@
 import json
 
-from dialogue_manager import add_dialogue
-from json_initializer import initialize_json_if_needed
-import json_reader
+from test.dialogue_manager import add_dialogue
+from test.json_initializer import initialize_json_if_needed
+import test.json_reader as json_reader
 
 def main():
 

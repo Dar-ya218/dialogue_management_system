@@ -1,7 +1,7 @@
 import os
 
-from constants import JSON_FILE
-from json_writer import write_json_file
+from test.constants import JSON_FILE
+from test.json_writer import write_json_file
 
 
 def initialize_json_if_needed():
