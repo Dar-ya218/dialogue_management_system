@@ -1,10 +1,11 @@
 import torch
 from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
 import os
+import json
 
-def transcribir_audio(audio_file, model_id="openai/whisper-large-v3-turbo"):
+def transcribir_audio(audio_file, model_id="openai/whisper-large-v3-turbo", output_json_path="transcription.json"):
     """
-    Transcribe un archivo de audio usando el modelo Whisper large-v3-turbo.
+    Transcribe un archivo de audio y guarda las palabras en un archivo JSON.
     """
     # Configuración del dispositivo (CPU o GPU)
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
@@ -19,31 +20,32 @@ def transcribir_audio(audio_file, model_id="openai/whisper-large-v3-turbo"):
     # Configurar el pipeline para transcripción
     pipe = pipeline(
         "automatic-speech-recognition",
-        model=model,
-        tokenizer=processor.tokenizer,
-        feature_extractor=processor.feature_extractor,
-        torch_dtype=torch_dtype,
-        device=device,
-        return_timestamps=True,  # Añadir este parámetro
-        language="es"  # Especificar el idioma español
+        model=model,       # Usar el modelo de transcripción
+        tokenizer=processor.tokenizer, # Usar el mismo tokenizador
+        feature_extractor=processor.feature_extractor, # Usar el mismo extractor de características
+        torch_dtype=torch_dtype, # Usar el mismo tipo de datos que el modelo
+        device=device,          # Usar GPU si está disponible
+        return_timestamps=True  # Devolver los tiempos de inicio y fin de cada palabra
     )
 
     # Transcribir el archivo de audio
     print(f"Transcribiendo el archivo: {audio_file}...")
     result = pipe(audio_file)
 
-    # Retornar la transcripción
-    return result["text"]
+    # Guardar la transcripción en un archivo JSON
+    transcription_text = result["text"]
+    transcription_data = {
+        "audio_file": os.path.basename(audio_file),
+        "transcription": transcription_text
+    }
+
+    with open(output_json_path, "w", encoding="utf-8") as json_file:
+        json.dump(transcription_data, json_file, ensure_ascii=False, indent=4)
+
+    print(f"Transcripción guardada en: {output_json_path}")
 
 if __name__ == "__main__":
-    # Ruta del archivo de audio descargado en la misma carpeta que el script
-    audio_file = "/home/dasha/Escritorio/Proyectos/dialogue_management_system/src/download/audio_1.mp3"  # Nombre del archivo directamente
+    audio_file = "/home/dasha/Escritorio/Proyectos/dialogue_management_system/src/download/audio_1.mp3"
+    output_json_path = "/home/dasha/Escritorio/Proyectos/dialogue_management_system/src/download/transcription.json"
 
-    # Verificar si el archivo existe en el directorio actual
-    if not os.path.exists(audio_file):
-        print(f"Error: No se encontró el archivo de audio '{audio_file}' en el directorio actual.")
-    else:
-        # Transcribir el audio
-        transcripcion = transcribir_audio(audio_file)
-        print("\nTranscripción:")
-        print(transcripcion)
+    transcribir_audio(audio_file, model_id="openai/whisper-large-v3-turbo", output_json_path=output_json_path)
